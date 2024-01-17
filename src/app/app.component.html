@@ -4,6 +4,17 @@
     Fairhouse
   </header>
   <section>
-    <app-housing-list [housingLocationList]="housingLocationList"></app-housing-list>
+    <app-housing-list [housingLocationList]="housingLocationList"
+                      (locationSelectedEvent)="updateSelectedLocation($event)"></app-housing-list>
   </section>
+  <article>
+    <ng-container *ngIf="selectedLocation">
+      <img [src]="selectedLocation?.photo" alt="">
+      <p>{{ selectedLocation?.name }}</p>
+      <p>Available units: {{ selectedLocation?.availableUnits }}</p>
+      <p>{{ selectedLocation?.city }}, {{ selectedLocation?.state }}</p>
+      <p>{{ selectedLocation?.laundry ? "Laundry available" : "Laundry unavailable" }}</p>
+      <p>{{ selectedLocation?.wifi ? "Wifi available" : "Wifi unavailable" }}</p>
+    </ng-container>
+  </article>
 </main>
